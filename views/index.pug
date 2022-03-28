@@ -8,8 +8,9 @@ body
         input(type='text', id='quant', value='')
         | State code:
         select(id='state')
-            each val in [{state: 'UT', tax: 6.85},{state: 'NV', tax: 8.00},{state: 'TX', tax: 6.25},{state: 'AL', tax: 4.00},{state: 'CA', tax: 8.25},]
-                option=val.state
+            each val in data
+                each _val in val
+                    option=_val.state
 
 
         input(type='button', onclick='discountcalc()', value='Calculate')
@@ -21,6 +22,12 @@ body
     p(id='postdisc') 0
     | Post state tax order price:
     p(id='posttax') 0
+    | Missing for next discount threshhold:
+    p(id='missingthresh') 0
+    | Amount paid to the state:
+    p(id='statetax') 0
 
 
-    script(src='./calculate.js')
+
+    script(type= 'module' src='./calculate.js')
+    script(type="module" src="../public/modules/apiQuery.js")
