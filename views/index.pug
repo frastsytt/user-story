@@ -2,13 +2,25 @@ p Hello I am running pug
 body
     form
         p
-            | Product price:
-            input(type='number', name='price', value='')
-            | Product quanitiy:
-            input(type='text', name='quant', value='')
-            | State code:
-            input(type='text', name='state', value='')
-        input(type='button', onclick=discountcalc(), value='Submit')
+        | Product price:
+        input(type='number', id='price', value='')
+        | Product quanitiy:
+        input(type='text', id='quant', value='')
+        | State code:
+        select(id='state')
+            each val in [{state: 'UT', tax: 6.85},{state: 'NV', tax: 8.00},{state: 'TX', tax: 6.25},{state: 'AL', tax: 4.00},{state: 'CA', tax: 8.25},]
+                option=val.state
 
 
-    script(src='./public/calculate.js')
+        input(type='button', onclick='discountcalc()', value='Calculate')
+
+
+    | Pre tax order price:
+    p(id='pretax') 0
+    | Post discount order price:
+    p(id='postdisc') 0
+    | Post state tax order price:
+    p(id='posttax') 0
+
+
+    script(src='./calculate.js')
