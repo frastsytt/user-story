@@ -1,0 +1,14 @@
+p Hello I am running pug
+body
+    form
+        p
+            | Product price:
+            input(type='number', name='price', value='')
+            | Product quanitiy:
+            input(type='text', name='quant', value='')
+            | State code:
+            input(type='text', name='state', value='')
+        input(type='button', onclick=discountcalc(), value='Submit')
+
+
+    script(src='./public/calculate.js')
